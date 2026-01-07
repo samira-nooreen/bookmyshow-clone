@@ -5,8 +5,9 @@ import { format } from "date-fns"
 import { supabase, type Ticket } from "@/lib/supabase"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
-import { Ticket as TicketIcon, Calendar, Clock, MapPin, QrCode } from "lucide-react"
+import { Ticket as TicketIcon, Calendar, Clock, MapPin, QrCode, Car, Map as MapIcon, Info } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 async function getTickets(userId: string) {
   const { data } = await supabase

@@ -54,7 +54,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {nowShowing.slice(0, 5).map((movie, index) => (
-              <div key={movie.id} className={`animate-fade-in-delay-${index % 4}`}>
+              <div key={movie.id} className={index === 0 ? "animate-fade-in" : `animate-fade-in-delay-${Math.min(index % 4, 3)}`}>
                 <MovieCard movie={movie} />
               </div>
             ))}

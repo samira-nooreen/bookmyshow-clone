@@ -79,6 +79,7 @@ export default async function MovieDetailPage({ params }: PageProps) {
     notFound()
   }
 
+  const hasTicket = await getHasTicket(id)
   const shows = await getShows(id)
   
   const showsByTheater = shows.reduce((acc, show) => {

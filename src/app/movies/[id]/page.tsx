@@ -9,8 +9,40 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { format } from "date-fns"
 
+import { ReviewSection } from "@/components/ReviewSection"
+
 interface PageProps {
   params: Promise<{ id: string }>
+}
+
+async function getHasTicket(movieId: string) {
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return false
+
+  const { data } = await supabase
+    .from("tickets")
+    .select("id")
+    .eq("user_id", user.id)
+    .innerJoin("shows", "show_id", "id")
+    .eq("shows.movie_id", movieId)
+    .limit(1)
+  
+  // Alternative check if innerJoin is not supported/easy via simple select
+  const { data: tickets } = await supabase
+    .from("tickets")
+    .select("show_id")
+    .eq("user_id", user.id)
+
+  if (!tickets || tickets.length === 0) return false
+
+  const showIds = tickets.map(t => t.show_id)
+  const { count } = await supabase
+    .from("shows")
+    .select("id", { count: 'exact', head: true })
+    .in("id", showIds)
+    .eq("movie_id", movieId)
+
+  return (count || 0) > 0
 }
 
 async function getMovie(id: string) {

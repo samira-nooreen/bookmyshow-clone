@@ -128,19 +128,60 @@ export default async function MyTicketsPage() {
                             ))}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 text-gray-400">
-                          <QrCode className="w-5 h-5" />
-                          <span className="font-mono text-sm">{ticket.booking_code}</span>
+                          <div className="flex items-center gap-2 text-gray-400">
+                            <QrCode className="w-5 h-5" />
+                            <span className="font-mono text-sm">{ticket.booking_code}</span>
+                          </div>
                         </div>
+
+                        {ticket.booking_status === "confirmed" && (
+                          <div className="mt-6 pt-6 border-t border-[#0f3460]">
+                            <div className="flex items-center gap-2 text-[#e94560] mb-4">
+                              <Car className="w-5 h-5" />
+                              <h4 className="font-bold uppercase tracking-wider text-sm">Last-Mile Commute Assistant</h4>
+                            </div>
+                            
+                            <div className="bg-[#0f0f1a] rounded-xl p-4 border border-[#0f3460] flex flex-col md:flex-row items-center justify-between gap-4">
+                              <div className="flex items-start gap-3">
+                                <div className="p-2 bg-yellow-500/10 rounded-lg">
+                                  <Info className="w-5 h-5 text-yellow-500" />
+                                </div>
+                                <div>
+                                  <p className="text-white text-sm font-medium">Traffic Alert: Moderate</p>
+                                  <p className="text-gray-400 text-xs mt-0.5">Estimated travel time: 25-30 mins. Leave by {format(new Date(new Date(ticket.show.start_time).getTime() - 45 * 60000), "h:mm a")} to catch the trailers!</p>
+                                </div>
+                              </div>
+                              
+                              <div className="flex gap-2 w-full md:w-auto">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  className="flex-1 md:flex-none border-[#0f3460] text-gray-300 hover:bg-[#0f3460] hover:text-white"
+                                  onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ticket.show.screen.theater.name + ' ' + ticket.show.screen.theater.city)}` } }, "*")}
+                                >
+                                  <MapIcon className="w-4 h-4 mr-2" />
+                                  Maps
+                                </Button>
+                                <Button 
+                                  size="sm"
+                                  className="flex-1 md:flex-none bg-black text-white hover:bg-gray-900 border border-gray-800"
+                                  onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://m.uber.com/ul/?action=setPickup&pickup=my_location" } }, "*")}
+                                >
+                                  <span className="font-black mr-2 italic">Uber</span>
+                                  Get Ride
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </main>
+                ))}
+              </div>
+            )}
+          </div>
+        </main>
 
       <Footer />
     </div>

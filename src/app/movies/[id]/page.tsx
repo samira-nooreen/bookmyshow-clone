@@ -211,11 +211,13 @@ export default async function MovieDetailPage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
-              )}
-            </section>
-          )}
-        </div>
-      </main>
+                )}
+              </section>
+            )}
+
+            <ReviewSection movieId={id} hasTicket={hasTicket} />
+          </div>
+        </main>
 
       <Footer />
     </div>

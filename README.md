@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📽️ BookMyShow – Online Movie Ticket Booking
+🔗 Live Demo 👉 (https://3000-b8ca3b91-00da-4b4c-8cd7-956713d23696.orchids.cloud/)
 
-## Getting Started
+📌 Description
 
-First, run the development server:
+BookMyShow is a full-featured online movie ticket booking platform where users can:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🎬 Browse now-showing and upcoming movies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🍿 See movie details (rating, duration, language)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📍 View local theater listings
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🎟️ Select showtimes and book tickets
 
-## Learn More
+💳 Pay securely and receive instant booking confirmation
 
-To learn more about Next.js, take a look at the following resources:
+The UI includes home, movies, theaters, login/signup pages, and an AI-powered mood-based movie selector for a personalized experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This platform is ideal for a cinema ticketing web app demo, user interface prototype, or as a starter template for a full stack movie-booking application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📦 Features
 
-## Deploy on Vercel
+✔ Modern, responsive movie browsing interface
+✔ AI Mood Explorer – get movie suggestions based on how you feel
+✔ Movie list with cover images and ratings
+✔ Booking flow including seat selection and payment
+✔ Theater listings and showtimes
+✔ Login & Sign-Up functionality
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🛠️ Technologies (suggested)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can include something like (if relevant):
+
+HTML5 / CSS3 / JavaScript (Front-end)
+
+React / Vue / Angular (optional SPA framework)
+
+Express / Node.js (Back-end)
+
+SQLite / MongoDB / Firebase (Database)
+
+RESTful API integration for dynamic movie data

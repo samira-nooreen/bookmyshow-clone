@@ -87,7 +87,13 @@ export function BookingContent({ show, bookedSeats }: BookingContentProps) {
       return
     }
 
-    toast.success("Tickets booked successfully!")
+    // Award Digital Stamp for Movie Passport
+    await supabase.from("user_stamps").insert({
+      user_id: user.id,
+      movie_id: show.movie_id
+    }).select().single()
+
+    toast.success("Tickets booked successfully! New stamp added to your Passport! 🎫")
     router.push("/my-tickets")
   }
 

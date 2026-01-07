@@ -15,6 +15,11 @@ interface HeroCarouselProps {
 export function HeroCarousel({ movies }: HeroCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({})
+
+  const handleImageError = (movieId: string) => {
+    setImageErrors(prev => ({ ...prev, [movieId]: true }))
+  }
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % movies.length)

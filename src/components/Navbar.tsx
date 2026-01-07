@@ -52,14 +52,19 @@ export function Navbar() {
               <Link href="/movies" className="text-gray-300 hover:text-white transition-colors font-medium">
                 Movies
               </Link>
-              <Link href="/theaters" className="text-gray-300 hover:text-white transition-colors font-medium">
-                Theaters
-              </Link>
-              {user && (
-                <Link href="/my-tickets" className="text-gray-300 hover:text-white transition-colors font-medium">
-                  My Tickets
+                <Link href="/theaters" className="text-gray-300 hover:text-white transition-colors font-medium">
+                  Theaters
                 </Link>
-              )}
+                {user && (
+                  <>
+                    <Link href="/my-tickets" className="text-gray-300 hover:text-white transition-colors font-medium">
+                      My Tickets
+                    </Link>
+                    <Link href="/my-passport" className="text-gray-300 hover:text-white transition-colors font-medium">
+                      Passport
+                    </Link>
+                  </>
+                )}
             </div>
           </div>
 

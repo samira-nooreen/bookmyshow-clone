@@ -12,15 +12,18 @@ interface MovieCardProps {
 }
 
 export function MovieCard({ movie, variant = "default" }: MovieCardProps) {
+  const [imgSrc, setImgSrc] = useState(variant === "featured" ? (movie.backdrop_url || movie.poster_url) : movie.poster_url)
+
   if (variant === "featured") {
     return (
       <Link href={`/movies/${movie.id}`} className="group relative block overflow-hidden rounded-xl">
         <div className="relative aspect-[16/9] w-full">
           <Image
-            src={movie.backdrop_url || movie.poster_url}
+            src={imgSrc}
             alt={movie.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={() => setImgSrc("https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=1280&q=80")}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -61,10 +64,11 @@ export function MovieCard({ movie, variant = "default" }: MovieCardProps) {
       <div className="relative overflow-hidden rounded-xl bg-[#16213e]">
         <div className="relative aspect-[2/3] w-full">
           <Image
-            src={movie.poster_url}
+            src={imgSrc}
             alt={movie.title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setImgSrc("https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&q=80")}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           {movie.rating > 0 && (

@@ -129,10 +129,49 @@ export function BookingContent({ show, bookedSeats }: BookingContentProps) {
             </div>
           </div>
 
-          <div className="bg-[#16213e] rounded-xl p-6 border border-[#0f3460]">
-            <h2 className="text-xl font-semibold text-white mb-6 text-center">Select Your Seats</h2>
-            
-            <div className="mb-8">
+            <div className="bg-[#16213e] rounded-xl p-6 border border-[#0f3460]">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-white">Select Your Seats</h2>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-400">POV Preview</span>
+                  <button
+                    onClick={() => setShowPOV(!showPOV)}
+                    className={`w-12 h-6 rounded-full transition-colors relative ${showPOV ? "bg-[#e94560]" : "bg-gray-700"}`}
+                  >
+                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${showPOV ? "left-7" : "left-1"}`} />
+                  </button>
+                </div>
+              </div>
+              
+              {showPOV && (
+                <div className="mb-8 relative h-48 bg-black rounded-xl overflow-hidden border border-[#0f3460] perspective-1000">
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div 
+                      className="w-3/4 h-2/3 bg-[#0f3460]/20 border-2 border-[#e94560]/50 rounded shadow-[0_0_50px_rgba(233,69,96,0.2)] flex items-center justify-center transition-all duration-500 ease-out"
+                      style={{
+                        transform: hoveredSeat ? (() => {
+                          const rowIdx = ROWS.indexOf(hoveredSeat.charAt(0))
+                          const seatNum = parseInt(hoveredSeat.substring(1))
+                          const xRotate = (rowIdx / ROWS.length) * 20 - 10
+                          const yRotate = ((seatNum - 1) / (SEATS_PER_ROW - 1)) * 40 - 20
+                          return `perspective(1000px) rotateX(${xRotate}deg) rotateY(${-yRotate}deg) scale(1.1)`
+                        })() : "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)"
+                      }}
+                    >
+                      <div className="text-center">
+                        <Monitor className="w-12 h-12 text-[#e94560] mx-auto mb-2 animate-pulse" />
+                        <p className="text-[#e94560] font-bold text-xl tracking-widest font-display">SCREEN</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-4 left-4 text-white text-sm bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10">
+                    {hoveredSeat ? `View from Seat ${hoveredSeat}` : "Hover over a seat to preview view"}
+                  </div>
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black via-transparent to-transparent" />
+                </div>
+              )}
+
+              <div className="mb-8">
               <div className="w-3/4 mx-auto h-2 bg-gradient-to-r from-transparent via-[#e94560] to-transparent rounded-full mb-2" />
               <p className="text-center text-gray-400 text-sm">SCREEN</p>
             </div>

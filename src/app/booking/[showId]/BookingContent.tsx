@@ -150,21 +150,23 @@ export function BookingContent({ show, bookedSeats }: BookingContentProps) {
                         const isSelected = selectedSeats.includes(seatId)
                         const isPremium = PREMIUM_ROWS.includes(row)
 
-                        return (
-                          <button
-                            key={seatId}
-                            onClick={() => toggleSeat(seatId)}
-                            disabled={isBooked}
-                            className={`
-                              w-7 h-7 rounded-t-lg text-xs font-medium transition-all
-                              ${isBooked ? "seat-booked" : isSelected ? "seat-selected text-white" : isPremium ? "seat-premium" : "seat-available"}
-                            `}
-                            title={`${seatId} - ₹${getSeatPrice(row)}`}
-                          >
-                            {seatNumber}
-                          </button>
-                        )
-                      })}
+                          return (
+                            <button
+                              key={seatId}
+                              onClick={() => toggleSeat(seatId)}
+                              onMouseEnter={() => setHoveredSeat(seatId)}
+                              onMouseLeave={() => setHoveredSeat(null)}
+                              disabled={isBooked}
+                              className={`
+                                w-7 h-7 rounded-t-lg text-xs font-medium transition-all
+                                ${isBooked ? "seat-booked" : isSelected ? "seat-selected text-white" : isPremium ? "seat-premium" : "seat-available"}
+                              `}
+                              title={`${seatId} - ₹${getSeatPrice(row)}`}
+                            >
+                              {seatNumber}
+                            </button>
+                          )
+                        })}
                     </div>
                     <span className="w-6 text-gray-400 text-sm font-medium">{row}</span>
                   </div>

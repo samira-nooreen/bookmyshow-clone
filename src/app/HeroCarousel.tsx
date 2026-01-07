@@ -51,24 +51,27 @@ export function HeroCarousel({ movies }: HeroCarouselProps) {
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
-      {movies.map((movie, index) => (
-        <div
-          key={movie.id}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            index === currentIndex ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <Image
-            src={movie.backdrop_url || movie.poster_url}
-            alt={movie.title}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f1a] via-[#0f0f1a]/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] via-transparent to-transparent" />
-        </div>
-      ))}
+        {movies.map((movie, index) => (
+          <div
+            key={movie.id}
+            className={`absolute inset-0 transition-opacity duration-700 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={imageErrors[movie.id] 
+                ? "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=1280&q=80" 
+                : (movie.backdrop_url || movie.poster_url)}
+              alt={movie.title}
+              fill
+              className="object-cover"
+              priority={index === 0}
+              onError={() => handleImageError(movie.id)}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0f0f1a] via-[#0f0f1a]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f1a] via-transparent to-transparent" />
+          </div>
+        ))}
 
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
         <div className="max-w-2xl">

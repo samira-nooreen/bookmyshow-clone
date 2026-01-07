@@ -33,7 +33,9 @@ const PREMIUM_ROWS = ["I", "J"]
 export function BookingContent({ show, bookedSeats }: BookingContentProps) {
   const router = useRouter()
   const [selectedSeats, setSelectedSeats] = useState<string[]>([])
+  const [hoveredSeat, setHoveredSeat] = useState<string | null>(null)
   const [isBooking, setIsBooking] = useState(false)
+  const [showPOV, setShowPOV] = useState(false)
 
   const toggleSeat = (seat: string) => {
     if (bookedSeats.includes(seat)) return

@@ -1,9 +1,8 @@
-# 📽️ BookYourShow – Online Movie Ticket Booking
+## 📽️ BookYourShow – Online Movie Ticket Booking ##
 
 BookYourShow is a high-performance cinema ticketing platform designed to streamline the movie-going experience. By bridging the gap between local theaters and cinema lovers through an intuitive, data-driven interface, it offers a seamless flow from discovery to checkout.
 
-### 🔗 Experience the App
-[**View Live Demo**](https://3000-b8ca3b91-00da-4b4c-8cd7-956713d23696.orchids.cloud/)
+### 🔗 Experience the App - [**View Live Demo**](https://3000-b8ca3b91-00da-4b4c-8cd7-956713d23696.orchids.cloud/)
 
 ---
 

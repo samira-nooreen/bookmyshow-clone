@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react" // Added Suspense
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Mail, Lock, Eye, EyeOff } from "lucide-react"
@@ -10,7 +10,8 @@ import { Label } from "@/components/ui/label"
 import { supabase } from "@/lib/supabase"
 import { toast } from "sonner"
 
-export default function LoginPage() {
+// Move all the login logic into a separate component
+function LoginContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirect = searchParams.get("redirect") || "/"
@@ -122,5 +123,18 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  )
+}
+
+// Default export wraps the content in Suspense
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#0f0f1a] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-[#e94560] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <LoginContent />
+    </Suspense>
   )
 }
